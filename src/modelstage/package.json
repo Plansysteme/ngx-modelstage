@@ -1,0 +1,14 @@
+{
+  "name": "modelstage",
+  "version": "1.0.0",
+  "description": "Plansysteme ModelStage Web Components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "jquery": "^3.0.0"
+  },
+  "author": "Ulrich Bönkemeyer",
+  "license": "ISC"
+}
