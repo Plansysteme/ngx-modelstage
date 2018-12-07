@@ -8,7 +8,7 @@ pool:
 
 steps:
 
-- script: npm install jquery @aspnet/signalr @aspnet/signalr-protocol-msgpack
+- script: npm install --nosave jquery @aspnet/signalr @aspnet/signalr-protocol-msgpack
   displayName: 'Installing peerDependendies'
 
 - script: npm install
@@ -17,7 +17,3 @@ steps:
 - script: npm run build
   displayName: 'Building the package'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
