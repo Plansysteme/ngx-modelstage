@@ -11,7 +11,7 @@ steps:
 - script: npm install --nosave jquery @aspnet/signalr @aspnet/signalr-protocol-msgpack
   displayName: 'Installing peerDependendies'
 
-- script: npm install
+- script: npm install --nosave
   displayName: 'Installing dependencies'
   
 - script: npm run build
