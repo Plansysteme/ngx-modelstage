@@ -7,14 +7,7 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 steps:
-
-- script: |
-    npm install --nosave jquery 
-    npm install --nosave @aspnet/signalr 
-    npm install --nosave @aspnet/signalr-protocol-msgpack
-  displayName: 'Installing peerDependendies'
-
-- script: npm install --nosave
+- script: npm install
   displayName: 'Installing dependencies'
   
 - script: npm run build
