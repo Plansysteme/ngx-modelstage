@@ -7,6 +7,10 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 steps:
+
+- script: npm install
+  displayName: 'Installing dependencies'
+  
 - script: npm run build
   displayName: 'Building the package'
 
