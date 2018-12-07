@@ -8,7 +8,10 @@ pool:
 
 steps:
 
-- script: npm install --nosave jquery @aspnet/signalr @aspnet/signalr-protocol-msgpack
+- script: |
+    npm install --nosave jquery 
+    npm install --nosave @aspnet/signalr 
+    npm install --nosave @aspnet/signalr-protocol-msgpack
   displayName: 'Installing peerDependendies'
 
 - script: npm install --nosave
