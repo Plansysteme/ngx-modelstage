@@ -7,7 +7,7 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 steps:
-- script: npm build
+- script: npm run build
   displayName: 'Building the package'
 
 - script: |
