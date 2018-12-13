@@ -1,6 +1,4 @@
 import { HubConnectionBuilder, LogLevel } from '@aspnet/signalr';
-import 'jquery-ui';
-import 'jquery.mousewheel';
 
 /**
  * @fileoverview added by tsickle

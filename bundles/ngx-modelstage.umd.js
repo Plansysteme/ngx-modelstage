@@ -1,6 +1,6 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@aspnet/signalr'), require('jquery-ui'), require('jquery.mousewheel')) :
-    typeof define === 'function' && define.amd ? define('ngx-modelstage', ['exports', '@aspnet/signalr', 'jquery-ui', 'jquery.mousewheel'], factory) :
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@aspnet/signalr')) :
+    typeof define === 'function' && define.amd ? define('ngx-modelstage', ['exports', '@aspnet/signalr'], factory) :
     (factory((global['ngx-modelstage'] = {}),global.signalr));
 }(this, (function (exports,signalr) { 'use strict';
 
