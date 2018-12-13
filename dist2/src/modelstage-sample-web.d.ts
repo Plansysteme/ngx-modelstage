@@ -1,6 +1,7 @@
 import { modelstage } from './modelstage';
-import 'jquery-ui';
-import 'jquery.mousewheel';
+import 'jquery-ui/ui/widgets/draggable';
+import 'jquery-ui/ui/widgets/droppable';
+import 'jquery-mousewheel';
 export declare class MessageChannel {
     protected extractPart(message: string): {
         remainder: string;
