@@ -1,5 +1,4 @@
 import { HubConnectionBuilder, LogLevel } from '@aspnet/signalr';
-import JQuery, { $ } from 'jquery';
 import 'jquery-ui/ui/widgets/draggable';
 import 'jquery-ui/ui/widgets/droppable';
 import 'jquery-mousewheel';
@@ -2199,7 +2198,7 @@ var modelstageweb;
                 /** @type {?} */
                 let image = new Image();
                 /** @type {?} */
-                let deferred = JQuery.Deferred();
+                let deferred = $.Deferred();
                 deferreds.push(deferred);
                 image.onload = () => {
                     this.stage.AssetStore.addTextureAsset(textureName, new TextureAssetWebGL(this.stage, image));
@@ -2306,7 +2305,7 @@ var modelstageweb;
             catch (error) {
                 console.log(JSON.stringify(error));
             }
-            return JQuery.when.apply(JQuery, deferreds);
+            return $.when.apply($, deferreds);
         }
         /**
          * @param {?} url
@@ -2314,7 +2313,7 @@ var modelstageweb;
          */
         getFromUrl(url) {
             /** @type {?} */
-            let deferred = JQuery.Deferred();
+            let deferred = $.Deferred();
             /** @type {?} */
             let req = new XMLHttpRequest();
             req.open('GET', url, true);
@@ -5074,32 +5073,32 @@ var modelstageweb;
          */
         bindEvents(target) {
             this.target = target;
-            JQuery(target).on('mousewheel', (e) => {
+            $(target).on('mousewheel', (e) => {
                 this.mouseWheel(e);
             });
-            JQuery(target).on('mousedown touchstart', (e) => {
+            $(target).on('mousedown touchstart', (e) => {
                 this.mouseDown(e);
                 e.preventDefault();
             });
             if (!((/** @type {?} */ (target))).setCapture) {
-                JQuery(document).on('mousemove touchmove', (e) => {
+                $(document).on('mousemove touchmove', (e) => {
                     this.mouseMove(e);
                 });
             }
             else {
-                JQuery(target).on('mousemove touchmove', (e) => {
+                $(target).on('mousemove touchmove', (e) => {
                     this.mouseMove(e);
                 });
             }
-            JQuery(document).on('mouseup touchend touchcancel', (e) => {
+            $(document).on('mouseup touchend touchcancel', (e) => {
                 this.mouseUp(e);
                 e.preventDefault();
             });
-            JQuery(target).on('losecapture', (e) => {
+            $(target).on('losecapture', (e) => {
                 this.mouseUp(e);
                 e.preventDefault();
             });
-            JQuery(document).on('keyup', (e) => {
+            $(document).on('keyup', (e) => {
                 if (this.keyUp(e)) {
                     e.preventDefault();
                 }
@@ -5161,8 +5160,8 @@ var modelstageweb;
                 this.startX = e.clientX;
                 this.startY = e.clientY;
                 this.updateLastPosition(e);
-                if (((/** @type {?} */ (e.target))).setCapture)
-                    ((/** @type {?} */ (e.target))).setCapture();
+                if (e.target.setCapture)
+                    e.target.setCapture();
             }
             if (this.hasTool() && !e.ctrlKey) {
                 this.CurrentTool.handleMouseDown(e);
@@ -5203,8 +5202,8 @@ var modelstageweb;
             if (e.button == this.leftButton) {
                 this.leftButtonDown = false;
                 updatePosition = true;
-                if (((/** @type {?} */ (e.target))).releaseCapture)
-                    ((/** @type {?} */ (e.target))).releaseCapture();
+                if (e.target.releaseCapture)
+                    e.target.releaseCapture();
             }
             if (this.hasTool() && !e.ctrlKey) {
                 this.CurrentTool.handleMouseUp(e);
@@ -5261,7 +5260,7 @@ var modelstageweb;
             this.stage = stage;
             this.camera = camera;
             this.connection = connection;
-            interfaceController.bindEvents(JQuery(stage.Canvas));
+            interfaceController.bindEvents($(stage.Canvas));
             interfaceController.onDrag = (e, dX, dY) => {
                 this.drag(e, dX, dY);
             };
@@ -8063,7 +8062,7 @@ var modelstage;
         initialize() {
             this.addSceneItem(this.spaceActor, true);
             this.spaceModel.updateSpace();
-            JQuery.when(
+            $.when(
             //                this.stage.AssetFactory.getFromUrl('/data/commonassets.psmesh'),
             this.stage.AssetFactory.getFromUrl('/data/hologem.psmesh'), 
             //                this.stage.AssetFactory.getFromUrl('/data/office_assets.psmesh'),
@@ -8112,12 +8111,12 @@ var modelstage;
                 /** @type {?} */
                 let peerInfoID = 'peer-info-' + peerID;
                 /** @type {?} */
-                let peerInfoElement = JQuery('#' + peerInfoID);
+                let peerInfoElement = $('#' + peerInfoID);
                 if (peerInfoElement.length > 0) {
                     peerInfoElement.find('span').text(userName);
                 }
                 else {
-                    JQuery('#participants-view').append('<li id="' + peerInfoID + '"><img src="images/info/Lens' + peerColorIndex + '.png" /><span>' + userName + '</span></li>');
+                    $('#participants-view').append('<li id="' + peerInfoID + '"><img src="images/info/Lens' + peerColorIndex + '.png" /><span>' + userName + '</span></li>');
                 }
             }
         }
@@ -8130,7 +8129,7 @@ var modelstage;
             /** @type {?} */
             let peerInfoID = 'peer-info-' + peerID;
             /** @type {?} */
-            let peerInfoElement = JQuery('#' + peerInfoID);
+            let peerInfoElement = $('#' + peerInfoID);
             peerInfoElement.addClass('removing');
             setTimeout(() => {
                 peerInfoElement.remove();
@@ -8550,12 +8549,12 @@ class SampleTheaterWebGL extends modelstage.TheaterWebGL {
                 scroll: false
             });
             ((/** @type {?} */ ($('#viewCanvas')))).droppable({
-            /*   over: (event, ui) => {
-                   let figureID = $(ui.draggable).attr('data-figure-id');
-                   //actor.Data['rotate'] = new psgeometry.Vec4(0, this.cameraController.Yaw, 0);
-
-                   this.interfaceController.pushTool(new modelstage.PlaceActorTool(figureID, this.stage.Camera, this.connection));
-               }*/
+                over: (event, ui) => {
+                    /** @type {?} */
+                    let figureID = $(ui.draggable).attr('data-figure-id');
+                    //actor.Data['rotate'] = new psgeometry.Vec4(0, this.cameraController.Yaw, 0);
+                    this.interfaceController.pushTool(new modelstage.PlaceActorTool(figureID, this.stage.Camera, this.connection));
+                }
             });
         });
     }

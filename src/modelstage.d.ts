@@ -1,7 +1,6 @@
 import { modelstageweb } from './mx-common';
 import { modelstageappstate } from './mx-appstate';
 import { psgeometry } from './ps-geometry';
-import JQuery from 'jquery';
 export declare module modelstage {
     class SpaceModel {
         private scene;
@@ -59,7 +58,7 @@ export declare module modelstage {
         private sceneObj;
         private sceneObjIdx;
         constructor(figureID: string, camera: modelstageweb.CameraWebGL, connection: modelstageweb.ServerConnection);
-        handleMouseMove(e: JQuery.Event<EventTarget, null>, x: number, y: number): void;
+        handleMouseMove(e: JQuery.TriggeredEvent, x: number, y: number): void;
         handleMouseUp(e: JQuery.Event): void;
     }
     class MoveActorTool extends ActorManipulationTool {
@@ -69,7 +68,7 @@ export declare module modelstage {
         private lastX;
         private lastZ;
         constructor(actor: modelstageweb.ActorWebGL, camera: modelstageweb.CameraWebGL, connection: modelstageweb.ServerConnection);
-        handleMouseMove(e: JQuery.Event<EventTarget, null>, x: number, y: number): void;
+        handleMouseMove(e: JQuery.TriggeredEvent, x: number, y: number): void;
         handleMouseUp(e: JQuery.Event): void;
     }
     class RotateActorTool extends ActorManipulationTool {

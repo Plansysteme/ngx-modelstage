@@ -1,10 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@aspnet/signalr'), require('jquery'), require('jquery-ui/ui/widgets/draggable'), require('jquery-ui/ui/widgets/droppable'), require('jquery-mousewheel')) :
-    typeof define === 'function' && define.amd ? define('ngx-modelstage', ['exports', '@aspnet/signalr', 'jquery', 'jquery-ui/ui/widgets/draggable', 'jquery-ui/ui/widgets/droppable', 'jquery-mousewheel'], factory) :
-    (factory((global['ngx-modelstage'] = {}),global.signalr,global.JQuery));
-}(this, (function (exports,signalr,JQuery) { 'use strict';
-
-    var JQuery__default = 'default' in JQuery ? JQuery['default'] : JQuery;
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@aspnet/signalr'), require('jquery-ui/ui/widgets/draggable'), require('jquery-ui/ui/widgets/droppable'), require('jquery-mousewheel')) :
+    typeof define === 'function' && define.amd ? define('ngx-modelstage', ['exports', '@aspnet/signalr', 'jquery-ui/ui/widgets/draggable', 'jquery-ui/ui/widgets/droppable', 'jquery-mousewheel'], factory) :
+    (factory((global['ngx-modelstage'] = {}),global.signalr));
+}(this, (function (exports,signalr) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -2855,7 +2853,7 @@
                         /** @type {?} */
                         var image_1 = new Image();
                         /** @type {?} */
-                        var deferred_1 = JQuery__default.Deferred();
+                        var deferred_1 = $.Deferred();
                         deferreds.push(deferred_1);
                         image_1.onload = function () {
                             _this.stage.AssetStore.addTextureAsset(textureName, new TextureAssetWebGL(_this.stage, image_1));
@@ -2997,7 +2995,7 @@
                     catch (error) {
                         console.log(JSON.stringify(error));
                     }
-                    return JQuery__default.when.apply(JQuery__default, deferreds);
+                    return $.when.apply($, deferreds);
                 };
             /**
              * @param {?} url
@@ -3010,7 +3008,7 @@
                 function (url) {
                     var _this = this;
                     /** @type {?} */
-                    var deferred = JQuery__default.Deferred();
+                    var deferred = $.Deferred();
                     /** @type {?} */
                     var req = new XMLHttpRequest();
                     req.open('GET', url, true);
@@ -6601,32 +6599,32 @@
                 function (target) {
                     var _this = this;
                     this.target = target;
-                    JQuery__default(target).on('mousewheel', function (e) {
+                    $(target).on('mousewheel', function (e) {
                         _this.mouseWheel(e);
                     });
-                    JQuery__default(target).on('mousedown touchstart', function (e) {
+                    $(target).on('mousedown touchstart', function (e) {
                         _this.mouseDown(e);
                         e.preventDefault();
                     });
                     if (!(( /** @type {?} */(target))).setCapture) {
-                        JQuery__default(document).on('mousemove touchmove', function (e) {
+                        $(document).on('mousemove touchmove', function (e) {
                             _this.mouseMove(e);
                         });
                     }
                     else {
-                        JQuery__default(target).on('mousemove touchmove', function (e) {
+                        $(target).on('mousemove touchmove', function (e) {
                             _this.mouseMove(e);
                         });
                     }
-                    JQuery__default(document).on('mouseup touchend touchcancel', function (e) {
+                    $(document).on('mouseup touchend touchcancel', function (e) {
                         _this.mouseUp(e);
                         e.preventDefault();
                     });
-                    JQuery__default(target).on('losecapture', function (e) {
+                    $(target).on('losecapture', function (e) {
                         _this.mouseUp(e);
                         e.preventDefault();
                     });
-                    JQuery__default(document).on('keyup', function (e) {
+                    $(document).on('keyup', function (e) {
                         if (_this.keyUp(e)) {
                             e.preventDefault();
                         }
@@ -6710,8 +6708,8 @@
                         this.startX = e.clientX;
                         this.startY = e.clientY;
                         this.updateLastPosition(e);
-                        if ((( /** @type {?} */(e.target))).setCapture)
-                            (( /** @type {?} */(e.target))).setCapture();
+                        if (e.target.setCapture)
+                            e.target.setCapture();
                     }
                     if (this.hasTool() && !e.ctrlKey) {
                         this.CurrentTool.handleMouseDown(e);
@@ -6762,8 +6760,8 @@
                     if (e.button == this.leftButton) {
                         this.leftButtonDown = false;
                         updatePosition = true;
-                        if ((( /** @type {?} */(e.target))).releaseCapture)
-                            (( /** @type {?} */(e.target))).releaseCapture();
+                        if (e.target.releaseCapture)
+                            e.target.releaseCapture();
                     }
                     if (this.hasTool() && !e.ctrlKey) {
                         this.CurrentTool.handleMouseUp(e);
@@ -6828,7 +6826,7 @@
                 this.stage = stage;
                 this.camera = camera;
                 this.connection = connection;
-                interfaceController.bindEvents(JQuery__default(stage.Canvas));
+                interfaceController.bindEvents($(stage.Canvas));
                 interfaceController.onDrag = function (e, dX, dY) {
                     _this.drag(e, dX, dY);
                 };
@@ -10576,7 +10574,7 @@
                     var _this = this;
                     this.addSceneItem(this.spaceActor, true);
                     this.spaceModel.updateSpace();
-                    JQuery__default.when(
+                    $.when(
                     //                this.stage.AssetFactory.getFromUrl('/data/commonassets.psmesh'),
                     this.stage.AssetFactory.getFromUrl('/data/hologem.psmesh'), 
                     //                this.stage.AssetFactory.getFromUrl('/data/office_assets.psmesh'),
@@ -10634,12 +10632,12 @@
                         /** @type {?} */
                         var peerInfoID = 'peer-info-' + peerID;
                         /** @type {?} */
-                        var peerInfoElement = JQuery__default('#' + peerInfoID);
+                        var peerInfoElement = $('#' + peerInfoID);
                         if (peerInfoElement.length > 0) {
                             peerInfoElement.find('span').text(userName);
                         }
                         else {
-                            JQuery__default('#participants-view').append('<li id="' + peerInfoID + '"><img src="images/info/Lens' + peerColorIndex + '.png" /><span>' + userName + '</span></li>');
+                            $('#participants-view').append('<li id="' + peerInfoID + '"><img src="images/info/Lens' + peerColorIndex + '.png" /><span>' + userName + '</span></li>');
                         }
                     }
                 };
@@ -10656,7 +10654,7 @@
                     /** @type {?} */
                     var peerInfoID = 'peer-info-' + peerID;
                     /** @type {?} */
-                    var peerInfoElement = JQuery__default('#' + peerInfoID);
+                    var peerInfoElement = $('#' + peerInfoID);
                     peerInfoElement.addClass('removing');
                     setTimeout(function () {
                         peerInfoElement.remove();
@@ -11168,22 +11166,22 @@
             _this.cameraController = new exports.modelstageweb.CameraController(_this.Stage, _this.Stage.Camera, _this.interfaceController, _this.connection);
             _this.cameraController.construct(12.0, -0.45, 0.0);
             _this.interfaceController.pushTool(new exports.ɵa.SelectionTool(_this.scene, _this.stage, _this.connection));
-            JQuery.$(function () {
+            $(function () {
                 _this.connection.connect();
-                (( /** @type {?} */(JQuery.$('.area-right-sidebar ul li')))).draggable({
+                (( /** @type {?} */($('.area-right-sidebar ul li')))).draggable({
                     containment: 'document',
                     cursor: 'crosshair',
                     helper: 'clone',
                     opacity: 0.5,
                     scroll: false
                 });
-                (( /** @type {?} */(JQuery.$('#viewCanvas')))).droppable({
-                /*   over: (event, ui) => {
-                       let figureID = $(ui.draggable).attr('data-figure-id');
-                       //actor.Data['rotate'] = new psgeometry.Vec4(0, this.cameraController.Yaw, 0);
-
-                       this.interfaceController.pushTool(new modelstage.PlaceActorTool(figureID, this.stage.Camera, this.connection));
-                   }*/
+                (( /** @type {?} */($('#viewCanvas')))).droppable({
+                    over: function (event, ui) {
+                        /** @type {?} */
+                        var figureID = $(ui.draggable).attr('data-figure-id');
+                        //actor.Data['rotate'] = new psgeometry.Vec4(0, this.cameraController.Yaw, 0);
+                        _this.interfaceController.pushTool(new exports.ɵa.PlaceActorTool(figureID, _this.stage.Camera, _this.connection));
+                    }
                 });
             });
             return _this;

@@ -1,5 +1,4 @@
 import { psgeometry } from './ps-geometry';
-import JQuery from 'jquery';
 export declare module modelstageweb {
     function uuidv4(): string;
     class ToolsWebGL {
